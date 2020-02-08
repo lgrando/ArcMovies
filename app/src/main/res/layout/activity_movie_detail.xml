@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="movie"
+            type="com.arctouch.codechallenge.model.Movie" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".views.activities.MovieDetailActivity">
+
+            <ImageView
+                android:id="@+id/ivMovieBackdrop"
+                movieBackdropSrc="@{movie.backdropPath}"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:alpha=".6"
+                android:scaleType="center"
+                app:layout_constraintBottom_toBottomOf="@id/ivMoviePoster"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_transparent_gradient"
+                app:layout_constraintBottom_toBottomOf="@id/ivMovieBackdrop"
+                app:layout_constraintTop_toTopOf="@id/ivMovieBackdrop" />
+
+            <ImageView
+                android:id="@+id/ivBackArrow"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivMoviePoster"
+                moviePosterSrc="@{movie.posterPath}"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:scaleType="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/tvMovieTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@{movie.title}"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@id/ivMoviePoster"
+                app:layout_constraintTop_toBottomOf="@id/ivMoviePoster"
+                tools:text="Movie title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGenres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvMovieTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieTitle"
+                tools:listitem="@layout/genre_item" />
+
+            <TextView
+                android:id="@+id/tvMovieOverview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="@{movie.overview}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvMovieTitle"
+                app:layout_constraintTop_toBottomOf="@id/rvGenres"
+                tools:text="Movie overview" />
+
+            <ImageView
+                android:id="@+id/ivCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_calendar"
+                android:visibility="@{movie.releaseDate != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="@id/tvMovieTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieOverview" />
+
+            <TextView
+                android:id="@+id/tvMovieReleaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="@{movie.releaseDate}"
+                app:layout_constraintBottom_toBottomOf="@id/ivCalendar"
+                app:layout_constraintStart_toEndOf="@id/ivCalendar"
+                app:layout_constraintTop_toTopOf="@id/ivCalendar" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

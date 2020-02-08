@@ -12,7 +12,14 @@ class ArcMoviesApplication : Application() {
 
     private fun setupKoin() {
         startKoin {
-            modules(listOf())
+            modules(
+                listOf(
+                    serviceModule,
+                    dataSourceModule,
+                    repositoryModule,
+                    viewModelModule
+                )
+            )
         }
     }
 }
