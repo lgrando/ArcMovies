@@ -21,17 +21,38 @@
             android:layout_height="wrap_content"
             tools:context=".views.activities.MovieDetailActivity">
 
+            <ImageView
+                android:id="@+id/ivMovieBackdrop"
+                movieBackdropSrc="@{movie.backdropPath}"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:alpha=".5"
+                android:scaleType="center"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <ImageView
+                android:id="@+id/ivMoviePoster"
+                moviePosterSrc="@{movie.posterPath}"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:scaleType="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
             <TextView
                 android:id="@+id/tvMovieTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@{movie.title}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/ivMoviePoster"
+                app:layout_constraintTop_toBottomOf="@id/ivMoviePoster"
                 tools:text="Movie title" />
 
             <androidx.recyclerview.widget.RecyclerView
