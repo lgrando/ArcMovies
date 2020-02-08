@@ -11,6 +11,7 @@ import com.arctouch.codechallenge.model.Genre
 import com.arctouch.codechallenge.util.EXTRA_MOVIE_ID
 import com.arctouch.codechallenge.viewmodels.MovieDetailViewModel
 import com.arctouch.codechallenge.views.adapters.GenericAdapter
+import com.arctouch.codechallenge.views.components.RequestFailureDialog
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -39,7 +40,7 @@ class MovieDetailActivity : AppCompatActivity() {
             })
 
             error.observe(this@MovieDetailActivity, Observer {
-
+                configureRequestFailureDialog()
             })
 
             isLoading.observe(this@MovieDetailActivity, Observer {
@@ -55,5 +56,16 @@ class MovieDetailActivity : AppCompatActivity() {
             rvGenres.adapter = adapter
             adapter.setupItems(list)
         }
+    }
+
+    private fun configureRequestFailureDialog() {
+        RequestFailureDialog(
+            retry = {
+                viewModel.getMovieDetails(movieId)
+            },
+            cancel = {
+                finish()
+            }
+        ).show(supportFragmentManager, RequestFailureDialog.REQUEST_FAILURE_DIALOG_TAG)
     }
 }

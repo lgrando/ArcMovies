@@ -2,14 +2,14 @@ package com.arctouch.codechallenge.views.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.arctouch.codechallenge.R
-import com.arctouch.codechallenge.viewmodels.HomeViewModel
 import com.arctouch.codechallenge.model.Movie
 import com.arctouch.codechallenge.util.EXTRA_MOVIE_ID
+import com.arctouch.codechallenge.viewmodels.HomeViewModel
 import com.arctouch.codechallenge.views.adapters.GenericAdapter
+import com.arctouch.codechallenge.views.components.RequestFailureDialog
 import kotlinx.android.synthetic.main.home_activity.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -23,17 +23,6 @@ class HomeActivity : AppCompatActivity() {
 
         configureObservers()
         viewModel.getUpcomingMovies()
-
-//        api.upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, 1, TmdbApi.DEFAULT_REGION)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe {
-//                val moviesWithGenres = it.results.map { movie ->
-//                    movie.copy(genres = Cache.genres.filter { movie.genreIds?.contains(it.id) == true })
-//                }
-//                recyclerView.adapter = HomeAdapter(moviesWithGenres)
-//                progressBar.visibility = View.GONE
-//            }
     }
 
     private fun configureObservers() {
@@ -49,9 +38,19 @@ class HomeActivity : AppCompatActivity() {
                 adapter.setupItems(it)
             })
             error.observe(this@HomeActivity, Observer {
-                // TODO: Error layout with retry
-                Toast.makeText(this@HomeActivity, "Error", Toast.LENGTH_SHORT).show()
+                configureRequestFailureDialog()
             })
         }
+    }
+
+    private fun configureRequestFailureDialog() {
+        RequestFailureDialog(
+            retry = {
+                viewModel.getUpcomingMovies()
+            },
+            cancel = {
+                finish()
+            }
+        ).show(supportFragmentManager, RequestFailureDialog.REQUEST_FAILURE_DIALOG_TAG)
     }
 }

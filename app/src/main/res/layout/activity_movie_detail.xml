@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="movie"
             type="com.arctouch.codechallenge.model.Movie" />
@@ -56,6 +58,26 @@
                 app:layout_constraintStart_toStartOf="@id/tvMovieTitle"
                 app:layout_constraintTop_toBottomOf="@id/rvGenres"
                 tools:text="Movie overview" />
+
+            <ImageView
+                android:id="@+id/ivCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_calendar"
+                android:visibility="@{movie.releaseDate != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="@id/tvMovieTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieOverview" />
+
+            <TextView
+                android:id="@+id/tvMovieReleaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="@{movie.releaseDate}"
+                app:layout_constraintBottom_toBottomOf="@id/ivCalendar"
+                app:layout_constraintStart_toEndOf="@id/ivCalendar"
+                app:layout_constraintTop_toTopOf="@id/ivCalendar" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
