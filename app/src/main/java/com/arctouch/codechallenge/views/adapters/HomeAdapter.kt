@@ -1,4 +1,4 @@
-package com.arctouch.codechallenge.home
+package com.arctouch.codechallenge.views.adapters
 
 
 import android.view.LayoutInflater
