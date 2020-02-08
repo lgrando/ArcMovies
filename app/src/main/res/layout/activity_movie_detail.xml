@@ -14,7 +14,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,11 +26,29 @@
                 android:id="@+id/ivMovieBackdrop"
                 movieBackdropSrc="@{movie.backdropPath}"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:alpha=".5"
+                android:layout_height="0dp"
+                android:alpha=".6"
                 android:scaleType="center"
+                app:layout_constraintBottom_toBottomOf="@id/ivMoviePoster"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_transparent_gradient"
+                app:layout_constraintBottom_toBottomOf="@id/ivMovieBackdrop"
+                app:layout_constraintTop_toTopOf="@id/ivMovieBackdrop" />
+
+            <ImageView
+                android:id="@+id/ivBackArrow"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/ivMoviePoster"

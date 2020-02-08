@@ -27,6 +27,7 @@ class MovieDetailActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail)
 
         configureObservers()
+        configureListeners()
 
         movieId = intent.getLongExtra(EXTRA_MOVIE_ID, 0)
         viewModel.getMovieDetails(movieId)
@@ -46,6 +47,12 @@ class MovieDetailActivity : AppCompatActivity() {
             isLoading.observe(this@MovieDetailActivity, Observer {
                 progressBar.visibility = if (it) View.VISIBLE else View.GONE
             })
+        }
+    }
+
+    private fun configureListeners() {
+        ivBackArrow.setOnClickListener {
+            onBackPressed()
         }
     }
 
