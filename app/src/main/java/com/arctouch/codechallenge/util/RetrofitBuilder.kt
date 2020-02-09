@@ -25,7 +25,6 @@ fun <T> buildApi(serviceClass: Class<T>): T {
 
     client.addInterceptor(TmdbInterceptor())
 
-    // Build retrofit
     val retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .client(client.build())

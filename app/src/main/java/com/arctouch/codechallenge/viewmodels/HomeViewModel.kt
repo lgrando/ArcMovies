@@ -1,16 +1,12 @@
 package com.arctouch.codechallenge.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arctouch.codechallenge.data.Cache
-import com.arctouch.codechallenge.model.Genre
 import com.arctouch.codechallenge.model.Movie
 import com.arctouch.codechallenge.repositories.MovieRepository
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 import kotlin.coroutines.CoroutineContext
 
 class HomeViewModel(
