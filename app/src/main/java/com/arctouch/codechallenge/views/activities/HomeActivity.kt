@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun configureObservers() {
         viewModel.apply {
-            movies?.observe(this@HomeActivity, Observer {
+            moviesPaged?.observe(this@HomeActivity, Observer {
                 val adapter = MoviePageAdapter { movie ->
                     val intent = Intent(this@HomeActivity, MovieDetailActivity::class.java)
                     intent.putExtra(EXTRA_MOVIE_ID, movie.id)
@@ -35,4 +35,5 @@ class HomeActivity : AppCompatActivity() {
             })
         }
     }
+
 }
