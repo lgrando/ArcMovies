@@ -23,16 +23,21 @@ class MovieDetailViewModel(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
+    private var dataLoaded = false
+
     fun getMovieDetails(id: Long) {
-        viewModelScope.launch(coroutineContext) {
-            _isLoading.postValue(true)
-            try {
-                val response = repository.getMovieDetails(id)
-                _movie.postValue(response)
-            } catch (e: Exception) {
-                _error.postValue(e.message)
-            } finally {
-                _isLoading.postValue(false)
+        if (!dataLoaded) {
+            viewModelScope.launch(coroutineContext) {
+                _isLoading.postValue(true)
+                try {
+                    val response = repository.getMovieDetails(id)
+                    _movie.postValue(response)
+                    dataLoaded = true
+                } catch (e: Exception) {
+                    _error.postValue(e.message)
+                } finally {
+                    _isLoading.postValue(false)
+                }
             }
         }
     }
