@@ -9,7 +9,6 @@ import com.arctouch.codechallenge.model.UpcomingMoviesResponse
 import com.arctouch.codechallenge.util.MOVIE_PAGING_ERROR_TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class MoviePageDataSource(
     private val service: TmdbApi,
