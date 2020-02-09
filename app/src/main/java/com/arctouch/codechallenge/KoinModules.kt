@@ -1,7 +1,9 @@
 package com.arctouch.codechallenge
 
 import com.arctouch.codechallenge.api.TmdbApi
-import com.arctouch.codechallenge.datasources.MovieRemoteDataSource
+import com.arctouch.codechallenge.datasources.GenreDataSource
+import com.arctouch.codechallenge.datasources.MovieDataSource
+import com.arctouch.codechallenge.repositories.GenreRepository
 import com.arctouch.codechallenge.viewmodels.HomeViewModel
 import com.arctouch.codechallenge.repositories.MovieRepository
 import com.arctouch.codechallenge.util.buildApi
@@ -15,11 +17,13 @@ val serviceModule = module {
 }
 
 val dataSourceModule = module {
-    factory { MovieRemoteDataSource(get()) }
+    factory { MovieDataSource(get()) }
+    factory { GenreDataSource(get()) }
 }
 
 val repositoryModule = module {
     factory { MovieRepository(get()) }
+    factory { GenreRepository(get()) }
 }
 
 val viewModelModule = module {

@@ -10,3 +10,5 @@ const val POSTER_URL = "https://image.tmdb.org/t/p/w154"
 const val BACKDROP_URL = "https://image.tmdb.org/t/p/w780"
 
 const val EXTRA_MOVIE_ID = "EXTRA_MOVIE_ID"
+
+const val CACHE_GENRES_ERROR_TAG = "CACHE_GENRES_ERROR_TAG"

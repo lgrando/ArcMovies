@@ -1,8 +1,8 @@
 package com.arctouch.codechallenge.repositories
 
-import com.arctouch.codechallenge.datasources.MovieRemoteDataSource
+import com.arctouch.codechallenge.datasources.MovieDataSource
 
-class MovieRepository(private val dataSource: MovieRemoteDataSource) {
+class MovieRepository(private val dataSource: MovieDataSource) {
 
     suspend fun getUpcomingMovies() = dataSource.getUpcomingMovies()
 

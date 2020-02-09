@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface TmdbApi {
 
     @GET("genre/movie/list")
-    fun genres(): Observable<GenreResponse>
+    suspend fun genres(): GenreResponse
 
     @GET("movie/upcoming")
     suspend fun upcomingMovies(

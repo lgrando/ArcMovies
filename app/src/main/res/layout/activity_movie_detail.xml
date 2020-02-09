@@ -20,6 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             tools:context=".views.activities.MovieDetailActivity">
 
             <ImageView
@@ -112,8 +113,9 @@
             <TextView
                 android:id="@+id/tvMovieReleaseDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="7dp"
+                android:gravity="center"
                 android:text="@{movie.releaseDate}"
                 app:layout_constraintBottom_toBottomOf="@id/ivCalendar"
                 app:layout_constraintStart_toEndOf="@id/ivCalendar"
