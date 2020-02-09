@@ -23,7 +23,7 @@ val serviceModule = module {
 val dataSourceModule = module {
     factory {
         PagedList.Config.Builder()
-            .setPageSize(30)
+            .setPageSize(20)
             .setEnablePlaceholders(false)
             .build()
     }
@@ -39,7 +39,7 @@ val repositoryModule = module {
 
 val viewModelModule = module {
     viewModel {
-        HomeViewModel(get(), Dispatchers.IO)
+        HomeViewModel(get())
     }
     viewModel {
         MovieDetailViewModel(get(), Dispatchers.IO)

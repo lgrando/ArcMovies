@@ -7,18 +7,16 @@ import androidx.paging.PagedList
 import com.arctouch.codechallenge.model.Movie
 import com.arctouch.codechallenge.repositories.MovieRepository
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 class HomeViewModel(
-    private val repository: MovieRepository,
-    private val coroutineContext: CoroutineContext
+    private val repository: MovieRepository
 ) : ViewModel() {
 
-    var movies: LiveData<PagedList<Movie>>? = null
+    var moviesPaged: LiveData<PagedList<Movie>>? = null
 
     init {
-        viewModelScope.launch(coroutineContext) {
-            movies = repository.getUpcomingMovies2()
+        viewModelScope.launch {
+            moviesPaged = repository.getUpcomingMovies()
         }
     }
 
