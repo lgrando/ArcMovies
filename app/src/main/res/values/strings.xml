@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Code Challenge</string>
     <string name="movie_and_genres">%s - %s</string>
+
+    <!-- region Error dialog -->
+    <string name="error_label">Sorry, an error has occurred</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <!-- endregion -->
 </resources>
