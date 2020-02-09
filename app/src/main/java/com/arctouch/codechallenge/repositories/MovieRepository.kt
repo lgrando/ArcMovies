@@ -13,9 +13,7 @@ class MovieRepository(
     private val pageConfig: PagedList.Config
 ) {
 
-    suspend fun getUpcomingMovies() = dataSource.getUpcomingMovies()
-
-    suspend fun getUpcomingMovies2(): LiveData<PagedList<Movie>> =
+    fun getUpcomingMovies(): LiveData<PagedList<Movie>> =
         LivePagedListBuilder<Long, Movie>(pageFactory, pageConfig).build()
 
     suspend fun getMovieDetails(id: Long) = dataSource.getMovieDetails(id)
